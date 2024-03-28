@@ -1,0 +1,31 @@
+name: 'Dependency Review'
+
+on:
+  # push:
+  #   branches: [ "main" ]
+  workflow_dispatch:
+  
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'microsoft'
+          cache: 'maven'
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
+      - name: Submit Dependency Snapshot
+        uses: advanced-security/maven-dependency-submission-action@v3.0.2
+        with:
+          ignore-maven-wrapper: true
+
+        
+
