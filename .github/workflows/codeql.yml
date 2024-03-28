@@ -92,8 +92,3 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-        
-    - name: Submit Dependency Snapshot
-      uses: advanced-security/maven-dependency-submission-action@v3.0.2
-      with:
-        ignore-maven-wrapper: true
